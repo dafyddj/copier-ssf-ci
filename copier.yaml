@@ -1,2 +1,15 @@
+_answers_file: .copier-answers.ssf-ci.yml
+_envops: {'trim_blocks': true}
 _subdirectory: template
 _templates_suffix: .copier-jinja
+
+# Questions
+formula_name:
+  type: str
+  help: What is you formula name? (e.g. the top-level forumla directory name)
+
+# Computed values
+project_is_TEMPLATE:
+  type: bool
+  when: false
+  default: '{{ formula_name == "TEMPLATE" }}'
