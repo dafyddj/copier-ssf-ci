@@ -5,7 +5,12 @@ The following new files/directories were created:
 --------renovate.json5
 --------workflows
 ------------main.yml
+----.gitignore
 ----.gitlab-ci.yml
 ----.pre-commit-config.yaml
+----.rstcheck.cfg
+----.rubocop.yml
+----.salt-lint
+----.yamllint
 ----commitlint.config.js
 ----kitchen.yml
