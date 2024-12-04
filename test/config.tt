@@ -11,10 +11,15 @@ create_catalogues:true
 
 [collate_file]
 commitlint_config_js:commitlint.config.js
+gitignore:.gitignore
 gitlab-ci_yml:.gitlab-ci.yml
 kitchen_yml:kitchen.yml
 main_yml:.github/workflows/main.yml
 pre-commit_yaml:.pre-commit-config.yaml
+rstcheck_cfg:.rstcheck.cfg
+rubocop_yml:.rubocop.yml
+salt-lint:.salt-lint
+yamllint:.yamllint
 
 [run_dependent_text]
 stderr:Copying from template version
