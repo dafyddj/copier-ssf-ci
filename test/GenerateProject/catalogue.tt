@@ -16,3 +16,6 @@ The following new files/directories were created:
 ----Gemfile.lock
 ----commitlint.config.js
 ----kitchen.yml
+----pre-commit_semantic-release.sh
+----release-rules.js
+----release.config.js
