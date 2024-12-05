@@ -11,6 +11,8 @@ create_catalogues:true
 
 [collate_file]
 commitlint_config_js:commitlint.config.js
+gemfile:Gemfile
+gemfile_lock:Gemfile.lock
 gitignore:.gitignore
 gitlab-ci_yml:.gitlab-ci.yml
 kitchen_yml:kitchen.yml
