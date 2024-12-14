@@ -6,7 +6,7 @@ _templates_suffix: .copier-jinja
 # Questions
 formula_name:
   type: str
-  help: What is you formula name? (e.g. the top-level forumla directory name)
+  help: What is your formula name? (e.g. the top-level forumla directory name)
 
 release_using_gha:
   type: bool
