@@ -1,2 +1,5 @@
 GenerateProject
 ProvideFormulaName
+
+# Release using GitHub Actions
+ReleaseUsingGHA

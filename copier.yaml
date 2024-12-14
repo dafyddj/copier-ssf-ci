@@ -8,7 +8,17 @@ formula_name:
   type: str
   help: What is you formula name? (e.g. the top-level forumla directory name)
 
+release_using_gha:
+  type: bool
+  help: Do you want to process a release using GitHub Actions?
+  default:  false
+
 # Computed values
+dry_run_on_gha:
+  type: str
+  when: false
+  default: '{{ (not release_using_gha)|string|lower }}'
+
 project_is_TEMPLATE:
   type: bool
   when: false
