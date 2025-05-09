@@ -4,8 +4,6 @@ The following new files/directories were created:
 ----.github
 --------renovate.json5
 --------settings.yml
---------workflows
-------------main.yml
 ----.gitignore
 ----.gitlab-ci.yml
 ----.pre-commit-config.yaml
