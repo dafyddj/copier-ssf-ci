@@ -7,7 +7,7 @@
 .node_anchors:
   # `only` (also used for `except` where applicable)
   only_branch_master_parent_repo: &only_branch_master_parent_repo
-    - 'master@saltstack-formulas/template-formula'
+    - 'master@saltstack-formulas/{{ formula_name|lower }}-formula'
   # `stage`
   stage_lint: &stage_lint 'lint'
   stage_release: &stage_release 'release'
@@ -55,7 +55,7 @@ commitlint:
   script:
     # Add `upstream` remote to get access to `upstream/master`
     - 'git remote add upstream
-       https://gitlab.com/saltstack-formulas/template-formula.git'
+       https://gitlab.com/saltstack-formulas/{{ formula_name|lower }}-formula.git'
     - 'git fetch --all'
     # Set default commit hashes for `--from` and `--to`
     - 'export COMMITLINT_FROM="$(git merge-base upstream/master HEAD)"'
