@@ -15,7 +15,6 @@ ci:
   autoupdate_schedule: quarterly
   skip: []
   submodules: false
-default_install_hook_types: [commit-msg, pre-commit]
 default_stages: [pre-commit]
 repos:
   - repo: https://github.com/dafyddj/commitlint-pre-commit-hook
@@ -26,26 +25,8 @@ repos:
         description: Lint commit message against @commitlint/config-conventional rules
         stages: [commit-msg]
         additional_dependencies: ['@commitlint/config-conventional@17.1.0']
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-    hooks:
-      - id: check-added-large-files
-        name: Check for added large files
-  - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.30.0
-    hooks:
-      - id: check-github-workflows
-        name: Check GitHub workflows with check-jsonschema
-        args: [--verbose]
-      - id: check-gitlab-ci
-        name: Check Gitlab CI config with check-jsonschema
-        args: [--verbose]
-      - id: check-renovate
-        name: Check Renovate config with check-jsonschema
-        additional_dependencies: [json5==0.9.14]
-        args: [--verbose]
   - repo: https://github.com/rubocop-hq/rubocop
-    rev: v1.69.1
+    rev: v1.57.0
     hooks:
       - id: rubocop
         name: Check Ruby files with rubocop
@@ -58,7 +39,7 @@ repos:
         files: ^.*\.(sh|bash|ksh)$
         types: []
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.35.1
+    rev: v1.32.0
     hooks:
       - id: yamllint
         name: Check YAML syntax with yamllint
@@ -72,7 +53,7 @@ repos:
         # 1. SLS files under directory `test/` which are state files
         # 2. `kitchen.vagrant.yml`, which contains Embedded Ruby (ERB) template syntax
         # 3. YAML files heavily reliant on Jinja
-        # 4. `.copier-answers.yml` and related files which are auto-generated
+        # 4. `.copier-answers.yml` and its variants which are auto-generated
         files: |
           (?x)^(
                 .*\.yaml|
@@ -95,14 +76,14 @@ repos:
         name: Check Salt files using salt-lint
         files: ^.*\.(sls|jinja|j2|tmpl|tst)$
   - repo: https://github.com/myint/rstcheck
-    rev: v6.2.4
+    rev: v6.2.0
     hooks:
       - id: rstcheck
         name: Check reST files using rstcheck
-        exclude: docs/CHANGELOG.rst
+        exclude: 'docs/CHANGELOG.rst'
         additional_dependencies: [sphinx==7.2.6]
   - repo: https://github.com/saltstack-formulas/mirrors-rst-lint
-    rev: v1.4.0
+    rev: v1.3.2
     hooks:
       - id: rst-lint
         name: Check reST files using rst-lint
@@ -114,3 +95,14 @@ repos:
                 docs/index.rst|
             )$
         additional_dependencies: [pygments==2.16.1]
+  - repo: https://github.com/renovatebot/pre-commit-hooks
+    rev: 40.5.0
+    hooks:
+      - id: renovate-config-validator
+        name: Check Renovate config with renovate-config-validator
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.33.0
+    hooks:
+      - id: check-gitlab-ci
+        name: Check GitLab CI config with check-jsonschema
+        args: ["--verbose"]
