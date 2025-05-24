@@ -1,2 +1,10 @@
 GenerateProject
 ProvideFormulaName
+TestOnDebianOnly
+TestOnRockyOnly
+TestOnAlmaOnly
+TestEmptyOSes
+FailurePermittedDebianOnly12Master
+FailurePermittedDebianOnlyAllMaster
+FailurePermittedDebianOnlySimplePattern
+FailurePermittedDebianOnlyVerbosePattern

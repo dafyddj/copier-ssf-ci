@@ -1,1 +1,1 @@
-copy --defaults --vcs-ref=HEAD
+copy $TEXTTEST_ROOT/.. . --defaults --vcs-ref=HEAD --data-file=data.yaml

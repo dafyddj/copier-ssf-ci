@@ -7,6 +7,30 @@ _templates_suffix: .copier-jinja
 formula_name:
   type: str
   help: What is your formula name? (e.g. the top-level formula directory name)
+supported_oses:
+  type: str
+  multiselect: true
+  help: Which OSes would you like the formula tested on?
+  default:
+    - Debian
+  choices:
+    - AlmaLinux OS
+    - Amazon Linux
+    - CentOS
+    - Debian
+    - Fedora Linux
+    - openSUSE
+    - Oracle Linux
+    - Rocky Linux
+    - Ubuntu
+  validator: |
+    {% if not supported_oses %}
+      At least one supported OS is required for testing
+    {% endif %}
+failure_permitted_pattern:
+  type: str
+  help: Enter a pattern (regex) for those test instances that should allow failure
+  default: master
 
 # Computed values
 project_is_TEMPLATE:

@@ -9,6 +9,8 @@ full_name:copier-template-formula
 
 create_catalogues:true
 
+link_test_path:data.yaml
+
 [collate_file]
 commitlint_config_js:commitlint.config.js
 gemfile:Gemfile
@@ -35,3 +37,4 @@ stderr:conflict
 stderr:identical
 stderr:overwrite
 stderr:skip
+stderr:^Traceback{[->}^ValueError

@@ -1,0 +1,41 @@
+/opt/homebrew/Cellar/copier/9.7.1/libexec/lib/python3.13/site-packages/copier/_vcs.py:209: DirtyLocalWarning: Dirty template changes included automatically.
+  warn(
+Traceback (most recent call last):
+  File "/opt/homebrew/bin/copier", line 8, in <module>
+    sys.exit(CopierApp.run())
+             ~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/copier/9.7.1/libexec/lib/python3.13/site-packages/plumbum/cli/application.py", line 640, in run
+    inst, retcode = subapp.run(argv, exit=False)
+                    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/copier/9.7.1/libexec/lib/python3.13/site-packages/plumbum/cli/application.py", line 635, in run
+    retcode = inst.main(*tailargs)
+  File "/opt/homebrew/Cellar/copier/9.7.1/libexec/lib/python3.13/site-packages/copier/_cli.py", line 282, in main
+    return _handle_exceptions(inner)
+  File "/opt/homebrew/Cellar/copier/9.7.1/libexec/lib/python3.13/site-packages/copier/_cli.py", line 71, in _handle_exceptions
+    method()
+    ~~~~~~^^
+  File "/opt/homebrew/Cellar/copier/9.7.1/libexec/lib/python3.13/site-packages/copier/_cli.py", line 273, in inner
+    with self._worker(
+         ~~~~~~~~~~~~^
+        template_src,
+        ^^^^^^^^^^^^^
+    ...<3 lines>...
+        overwrite=self.force or self.overwrite,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as worker:
+    ^
+  File "/opt/homebrew/Cellar/copier/9.7.1/libexec/lib/python3.13/site-packages/copier/_main.py", line 267, in __exit__
+    raise value
+  File "/opt/homebrew/Cellar/copier/9.7.1/libexec/lib/python3.13/site-packages/copier/_cli.py", line 280, in inner
+    worker.run_copy()
+    ~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/copier/9.7.1/libexec/lib/python3.13/site-packages/copier/_main.py", line 94, in _wrapper
+    return func(*args, **kwargs)
+  File "/opt/homebrew/Cellar/copier/9.7.1/libexec/lib/python3.13/site-packages/copier/_main.py", line 1015, in run_copy
+    self._ask()
+    ~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/copier/9.7.1/libexec/lib/python3.13/site-packages/copier/_main.py", line 581, in _ask
+    raise ValueError(
+        f"Validation error for question '{var_name}': {err_msg}"
+    )
+ValueError: Validation error for question 'supported_oses': At least one supported OS is required for testing
