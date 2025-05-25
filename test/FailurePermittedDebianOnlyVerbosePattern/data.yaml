@@ -1,0 +1,9 @@
+---
+supported_oses:
+  - Debian
+  - Rocky Linux
+failure_permitted_pattern: |
+  (?x)^(
+    debian-11-3007-2|
+    rockylinux-9-3006-10|
+  )$

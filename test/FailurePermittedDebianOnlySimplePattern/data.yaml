@@ -1,0 +1,4 @@
+---
+supported_oses:
+  - Debian
+  - Rocky Linux
