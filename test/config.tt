@@ -23,6 +23,7 @@ pre-commit_semantic-release_sh:pre-commit_semantic-release.sh
 pre-commit_yaml:.pre-commit-config.yaml
 release-rules_js:release-rules.js
 release_config_js:release.config.js
+renovate_json5:.github/renovate.json5
 rstcheck_cfg:.rstcheck.cfg
 rubocop_yml:.rubocop.yml
 salt-lint:.salt-lint
