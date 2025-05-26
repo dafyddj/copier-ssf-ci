@@ -30,7 +30,7 @@ supported_oses:
 failure_permitted_pattern:
   type: str
   help: Enter a pattern (regex) for those test instances that should allow failure
-  default: master
+  default: -master
 renovate_presets:
   type: json
   help: Enter a list of Renovate presets you would like your configuration to extend from
