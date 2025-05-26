@@ -5,6 +5,6 @@ extends: [
 ],
 /**********************************************************
  * This file is managed as part of a Copier template.     *
- * Please make any changes below this comment.            *
+ * Please make your own changes below this comment.       *
  *********************************************************/
 }
