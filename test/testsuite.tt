@@ -1,5 +1,7 @@
 GenerateProject
 ProvideFormulaName
+PresetRemoveOne
+PresetAddOne
 TestOnDebianOnly
 TestOnRockyOnly
 TestOnAlmaOnly

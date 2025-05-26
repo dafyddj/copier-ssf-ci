@@ -1,0 +1,12 @@
+{
+$schema: 'https://docs.renovatebot.com/renovate-schema.json',
+extends: [
+  "github>saltstack-formulas/.github",
+  "github>saltstack-formulas/.github:copier",
+  "schedule:weekends"
+],
+/**********************************************************
+ * This file is managed as part of a Copier template.     *
+ * Please make your own changes below this comment.       *
+ *********************************************************/
+}
