@@ -29,6 +29,7 @@ supported_oses:
     {% endif %}
 failure_permitted_pattern:
   type: str
+  multiline: true
   help: Enter a pattern (regex) for those test instances that should allow failure
   default: -master
 renovate_presets:
