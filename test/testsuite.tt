@@ -2,6 +2,7 @@ GenerateProject
 ProvideFormulaName
 PresetRemoveOne
 PresetAddOne
+PresetEmpty
 TestOnDebianOnly
 TestOnRockyOnly
 TestOnAlmaOnly
