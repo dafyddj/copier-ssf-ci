@@ -3,6 +3,9 @@ ProvideFormulaName
 PresetRemoveOne
 PresetAddOne
 PresetEmpty
+IgnorePresetDefaultEmpty
+IgnorePresetAddOne
+IgnorePresetAddTwo
 TestOnDebianOnly
 TestOnRockyOnly
 TestOnAlmaOnly
