@@ -15,7 +15,7 @@ failure_permitted_pattern: |
     fedora-41-|
     opensuse-leap-156-master$
   )
-renovate_presets:
+renovate_extend_presets:
   - github>saltstack-formulas/.github
   - github>saltstack-formulas/.github:copier
   - schedule:weekends

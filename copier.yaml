@@ -32,7 +32,7 @@ failure_permitted_pattern:
   multiline: true
   help: Enter a pattern (regex) for those test instances that should allow failure
   default: -master
-renovate_presets:
+renovate_extend_presets:
   type: json
   help: Enter a list of Renovate presets you would like your configuration to extend from
   default: ["github>saltstack-formulas/.github", "github>saltstack-formulas/.github:copier"]
