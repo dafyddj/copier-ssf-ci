@@ -36,6 +36,10 @@ renovate_presets:
   type: json
   help: Enter a list of Renovate presets you would like your configuration to extend from
   default: ["github>saltstack-formulas/.github", "github>saltstack-formulas/.github:copier"]
+renovate_ignore_presets:
+  type: json
+  help: Enter a list of Renovate presets you would like your configuration to ignore
+  default: []
 
 # Computed values
 project_is_TEMPLATE:
