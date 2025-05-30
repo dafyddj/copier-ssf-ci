@@ -1,7 +1,7 @@
 {
 $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-{% if renovate_presets %}
-extends: {{ renovate_presets | to_nice_json(indent=2) }},
+{% if renovate_extend_presets %}
+extends: {{ renovate_extend_presets | to_nice_json(indent=2) }},
 {% endif %}
 {% if renovate_ignore_presets %}
 ignorePresets: {{ renovate_ignore_presets | to_nice_json(indent=2) }},
