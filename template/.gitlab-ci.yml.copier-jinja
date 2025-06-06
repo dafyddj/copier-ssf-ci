@@ -202,7 +202,7 @@ test-formula-conversion: {extends: '.test_conversion'}
      "AlmaLinux OS": "almalinux",
      "Fedora Linux": "fedora",
    } %}
-{% for salt_ver in ["master", "3007-3", "3006-10"] %}
+{% for salt_ver in ["master", "3007-3", "3006-11"] %}
 {%   for os_name in supported_oses %}
 {%     for os_ver in os_versions.get(os_name, []) %}
 {%       set instance = os_shortnames[os_name]|d(os_name|lower|replace(" ","")) ~ "-" ~ os_ver ~ "-" ~ salt_ver %}
