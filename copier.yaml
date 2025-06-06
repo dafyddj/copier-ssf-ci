@@ -7,6 +7,10 @@ _templates_suffix: .copier-jinja
 formula_name:
   type: str
   help: What is your formula name? (e.g. the top-level formula directory name)
+  validator: |
+    {% if not formula_name %}
+      Formula name is required
+    {% endif %}
 supported_oses:
   type: str
   multiselect: true
