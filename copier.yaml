@@ -16,7 +16,15 @@ supported_oses:
   multiselect: true
   help: Which OSes would you like the formula tested on?
   default:
+    - AlmaLinux OS
+    - Amazon Linux
+    - CentOS
     - Debian
+    - Fedora Linux
+    - openSUSE
+    - Oracle Linux
+    - Rocky Linux
+    - Ubuntu
   choices:
     - AlmaLinux OS
     - Amazon Linux
