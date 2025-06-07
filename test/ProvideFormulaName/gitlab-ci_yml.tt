@@ -89,7 +89,7 @@ commitlint:
   script:
     # Add `upstream` remote to get access to `upstream/master`
     - 'git remote add upstream
-       https://gitlab.com/saltstack-formulas/template-formula.git'
+       https://gitlab.com/saltstack-formulas/example-formula.git'
     - 'git fetch --all'
     # Set default commit hashes for `--from` and `--to`
     - 'export COMMITLINT_FROM="$(git merge-base upstream/master HEAD)"'
