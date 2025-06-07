@@ -1,6 +1,7 @@
 GenerateProject
 ProvideFormulaName
 ProvideEmptyFormulaName
+BannerWithFormulaName
 PresetRemoveOne
 PresetAddOne
 PresetEmpty
