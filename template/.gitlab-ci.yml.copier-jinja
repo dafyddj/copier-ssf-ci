@@ -232,11 +232,14 @@ test-formula-conversion: {extends: '.test_conversion'}
      "AlmaLinux OS": "almalinux",
      "Fedora Linux": "fedora",
    } %}
+{% set patterns = failure_permitted_builtins + failure_permitted_patterns %}
+{% set patterns = patterns|reject("in", failure_permitted_ignored)|list %}
+{% set pattern = "(" + patterns | join("|") + ")" %}
 {% for salt_ver in ["master", "3007-3", "3006-11"] %}
 {%   for os_name in supported_oses %}
 {%     for os_ver in os_versions.get(os_name, []) %}
 {%       set instance = os_shortnames[os_name]|d(os_name|lower|replace(" ","")) ~ "-" ~ os_ver ~ "-" ~ salt_ver %}
-{%       set job_template = ".test_instance_failure_permitted" if instance|regex_search(failure_permitted_pattern) else ".test_instance" %}
+{%       set job_template = ".test_instance_failure_permitted" if instance|regex_search(pattern) else ".test_instance" %}
 {{ instance ~ ": {extends: '" ~ job_template ~ "'}" }}
 {%     endfor %}
 {%   endfor %}

@@ -3,6 +3,12 @@ _envops: {'trim_blocks': true}
 _subdirectory: template
 _templates_suffix: .copier-jinja
 
+# Built-in values
+failure_permitted_builtins:
+  type: json
+  when: false
+  default: ["^amazonlinux-2-", "^fedora-41-", "-master$"]
+
 # Questions
 formula_name:
   type: str
@@ -39,11 +45,26 @@ supported_oses:
     {% if not supported_oses %}
       At least one supported OS is required for testing
     {% endif %}
-failure_permitted_pattern:
+failure_permitted_pattern_DEPRECATED:
   type: str
   multiline: true
   help: Enter a pattern (regex) for those test instances that should allow failure
+  when: false
   default: -master
+failure_permitted_patterns:
+  type: json
+  help: |
+    Enter a list of patterns that match those test instances that should allow failure.
+       These are in addition to the built-in patterns which are:
+       {{ failure_permitted_builtins }}
+  default: []
+failure_permitted_ignored:
+  type: json
+  help: |
+    Enter a list of "failure_permitted" patterns to ignore.
+       These would typically be one or more of the built-in patterns which are:
+       {{ failure_permitted_builtins }}
+  default: []
 renovate_extend_presets:
   type: json
   help: Enter a list of Renovate presets you would like your configuration to extend from

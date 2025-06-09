@@ -9,10 +9,8 @@ supported_oses:
   - Oracle Linux
   - Rocky Linux
   - Ubuntu
-failure_permitted_pattern: |
-  (?x)^(
-    amazonlinux-2-|
-    fedora-41-|
-    opensuse-leap-156-master$
-  )
+failure_permitted_patterns:
+  - opensuse-leap-156-master
+failure_permitted_ignored:
+  - -master$
 renovate_extend_presets: []

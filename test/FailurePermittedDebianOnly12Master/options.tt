@@ -1,1 +1,1 @@
--d formula_name=TEMPLATE -d failure_permitted_pattern=debian-12-master
+-d formula_name=TEMPLATE -d failure_permitted_patterns='["debian-12-master"]' -d failure_permitted_ignored='["-master$"]'
