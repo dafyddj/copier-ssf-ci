@@ -1,1 +1,1 @@
--d formula_name=TEMPLATE -d failure_permitted_pattern='[11|9]-3'
+-d formula_name=TEMPLATE -d failure_permitted_patterns='["[11|9]-3"]'

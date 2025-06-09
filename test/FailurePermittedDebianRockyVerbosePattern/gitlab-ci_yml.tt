@@ -213,17 +213,17 @@ test-formula-conversion: {extends: '.test_conversion'}
 # OpenSUSE master branch will fail until zypperpkg module is back in salt core
 # https://github.com/saltstack/great-module-migration/issues/14
 #
-debian-12-master: {extends: '.test_instance'}
-debian-11-master: {extends: '.test_instance'}
-rockylinux-9-master: {extends: '.test_instance'}
-rockylinux-8-master: {extends: '.test_instance'}
+debian-12-master: {extends: '.test_instance_failure_permitted'}
+debian-11-master: {extends: '.test_instance_failure_permitted'}
+rockylinux-9-master: {extends: '.test_instance_failure_permitted'}
+rockylinux-8-master: {extends: '.test_instance_failure_permitted'}
 debian-12-3007-3: {extends: '.test_instance'}
-debian-11-3007-3: {extends: '.test_instance'}
+debian-11-3007-3: {extends: '.test_instance_failure_permitted'}
 rockylinux-9-3007-3: {extends: '.test_instance'}
 rockylinux-8-3007-3: {extends: '.test_instance'}
 debian-12-3006-11: {extends: '.test_instance'}
 debian-11-3006-11: {extends: '.test_instance'}
-rockylinux-9-3006-11: {extends: '.test_instance'}
+rockylinux-9-3006-11: {extends: '.test_instance_failure_permitted'}
 rockylinux-8-3006-11: {extends: '.test_instance'}
 # yamllint enable rule:line-length
 
