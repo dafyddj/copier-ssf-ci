@@ -223,7 +223,7 @@ test-formula-conversion: {extends: '.test_conversion'}
      "CentOS": ["stream9"],
      "Debian": [12, 11],
      "Fedora Linux": [41, 40],
-     "openSUSE":  ["leap-156", "leap-155", "tmbl-latest"],
+     "openSUSE":  ["leap-156", "tmbl-latest"],
      "Oracle Linux": [9, 8],
      "Rocky Linux": [9, 8],
      "Ubuntu": [2404, 2204, 2004],
