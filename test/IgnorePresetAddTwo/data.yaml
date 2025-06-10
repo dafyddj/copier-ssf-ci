@@ -9,10 +9,6 @@ supported_oses:
   - Oracle Linux
   - Rocky Linux
   - Ubuntu
-failure_permitted_patterns:
-  - opensuse-leap-156-master
-failure_permitted_ignored:
-  - -master$
 renovate_ignore_presets:
   - schedule:monthly
   - :ignoreModulesAndTests

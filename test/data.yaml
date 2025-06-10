@@ -11,5 +11,3 @@ supported_oses:
   - Ubuntu
 failure_permitted_patterns:
   - opensuse-leap-156-master
-failure_permitted_ignored:
-  - -master$
