@@ -215,10 +215,10 @@ test-formula-conversion: {extends: '.test_conversion'}
 #
 rockylinux-9-master: {extends: '.test_instance_failure_permitted'}
 rockylinux-8-master: {extends: '.test_instance_failure_permitted'}
-rockylinux-9-3007-3: {extends: '.test_instance'}
-rockylinux-8-3007-3: {extends: '.test_instance'}
-rockylinux-9-3006-11: {extends: '.test_instance'}
-rockylinux-8-3006-11: {extends: '.test_instance'}
+rockylinux-9-3007-4: {extends: '.test_instance'}
+rockylinux-8-3007-4: {extends: '.test_instance'}
+rockylinux-9-3006-12: {extends: '.test_instance'}
+rockylinux-8-3006-12: {extends: '.test_instance'}
 # yamllint enable rule:line-length
 
 ###############################################################################
