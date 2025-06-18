@@ -1,4 +1,5 @@
 GenerateProject
+ReleaseNotOnGHA
 ProvideFormulaName
 ProvideEmptyFormulaName
 BannerWithFormulaName

@@ -1,3 +1,4 @@
 ---
+release_using_gha: true
 supported_oses:
   - Debian
