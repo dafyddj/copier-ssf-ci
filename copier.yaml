@@ -40,10 +40,6 @@ formula_name:
     {% if not formula_name %}
       Formula name is required
     {% endif %}
-release_using_gha:
-  type: bool
-  help: Do you want to process a release using GitHub Actions?
-  default:  false
 supported_oses:
   type: str
   multiselect: true
@@ -114,7 +110,7 @@ gha_supported_oses:
   help: The OSes that we currently support on GitHub Actions. This will expand over time
   when: false
   default: |
-    {{ (["Debian", "Ubuntu"] if release_using_gha else [])|to_json }}
+    {{ ["Debian", "Ubuntu"]|to_json }}
 test_instances:
   type: json
   help: A list of test instances of the form `debian-12-master` or `fedora-41-3006-7`
@@ -139,7 +135,8 @@ gha_test_instances:
   default: |
     {% set ns = namespace(instances=[]) %}
     {% for salt_ver in salt_versions %}
-    {%   for os_name in supported_oses|select("in", gha_supported_oses)|list %}
+    {%   set gha_supported_oses = supported_oses|select("in", gha_supported_oses)|list %}
+    {%   for os_name in gha_supported_oses %}
     {%     for os_ver in os_versions.get(os_name, []) %}
     {%       set os_shortname = os_shortnames[os_name]|d(os_name|lower|replace(" ","")) %}
     {%       set instance = "-".join([os_shortname, os_ver|string, salt_ver]) %}
@@ -148,6 +145,13 @@ gha_test_instances:
     {%   endfor %}
     {% endfor %}
     {{ ns.instances|to_json }}
+
+# Dynamic questions/values
+release_using_gha:
+  type: bool
+  help: Do you want to process a release using GitHub Actions?
+  when: '{{ gha_test_instances }}'
+  default:  false
 gha_checks_to_ignore:
   type: json
   help: A list of GHA status checks to be ignored by `poseidon/wait-for-status-checks`.
@@ -156,6 +160,7 @@ gha_checks_to_ignore:
   when: false
   default: |
     {% set ns = namespace(checks_to_ignore=["Release / Collect results"]) %}
+    {% set gha_test_instances = gha_test_instances if release_using_gha else [] %}
     {% for instance in gha_test_instances if instance|regex_search(failure_permitted_pattern) %}
     {%   set ns.checks_to_ignore = ns.checks_to_ignore + ["Test / Kitchen ({})".format(instance)] %}
     {% endfor %}

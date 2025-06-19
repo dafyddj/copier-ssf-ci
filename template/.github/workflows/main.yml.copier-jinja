@@ -46,6 +46,7 @@ jobs:
           git config --global --add safe.directory $(pwd)
           pre-commit run --all-files --color always --verbose
           pre-commit run --color always --hook-stage manual commitlint-ci
+{% if release_using_gha %}
   test:
     name: Test / Kitchen
     needs:
@@ -73,6 +74,7 @@ jobs:
           ruby-version: '3.1'
       - run: |
           bin/kitchen verify {% raw %}${{ matrix.platform }}{% endraw +%}
+{% endif %}
   results:
     name: Release / Collect results
     permissions:
