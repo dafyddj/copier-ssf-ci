@@ -1,12 +1,3 @@
 ---
-supported_oses:
-  - AlmaLinux OS
-  - Amazon Linux
-  - CentOS
-  - Debian
-  - Fedora Linux
-  - openSUSE
-  - Oracle Linux
-  - Rocky Linux
-  - Ubuntu
+release_using_gha: true
 renovate_extend_presets: []

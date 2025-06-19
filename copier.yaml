@@ -7,7 +7,30 @@ _templates_suffix: .copier-jinja
 failure_permitted_builtins:
   type: json
   when: false
-  default: ["^amazonlinux-2-", "^fedora-41-", "-master$"]
+  default: ['^amazonlinux-2-', '^fedora-41-', '-master$']
+os_shortnames:
+  type: yaml
+  when: false
+  default:
+    AlmaLinux OS: almalinux
+    Fedora Linux: fedora
+os_versions:
+  type: yaml
+  when: false
+  default: |
+    AlmaLinux OS: [9, 8]
+    Amazon Linux: [2023, 2]
+    CentOS: ['stream9']
+    Debian: [12, 11]
+    Fedora Linux: [41, 40]
+    openSUSE:  ['leap-156', 'tmbl-latest']
+    Oracle Linux: [9, 8]
+    Rocky Linux: [9, 8]
+    Ubuntu: [2404, 2204, 2004]
+salt_versions:
+  type: json
+  when: false
+  default: ['master', '3007-4', '3006-12']
 
 # Questions
 formula_name:
@@ -17,11 +40,15 @@ formula_name:
     {% if not formula_name %}
       Formula name is required
     {% endif %}
+release_using_gha:
+  type: bool
+  help: Do you want to process a release using GitHub Actions?
+  default:  false
 supported_oses:
   type: str
   multiselect: true
   help: Which OSes would you like the formula tested on?
-  default:
+  choices:
     - AlmaLinux OS
     - Amazon Linux
     - CentOS
@@ -31,7 +58,7 @@ supported_oses:
     - Oracle Linux
     - Rocky Linux
     - Ubuntu
-  choices:
+  default:
     - AlmaLinux OS
     - Amazon Linux
     - CentOS
@@ -45,12 +72,6 @@ supported_oses:
     {% if not supported_oses %}
       At least one supported OS is required for testing
     {% endif %}
-failure_permitted_pattern_DEPRECATED:
-  type: str
-  multiline: true
-  help: Enter a pattern (regex) for those test instances that should allow failure
-  when: false
-  default: -master
 failure_permitted_patterns:
   type: json
   help: |
@@ -79,3 +100,63 @@ project_is_TEMPLATE:
   type: bool
   when: false
   default: '{{ formula_name == "TEMPLATE" }}'
+failure_permitted_pattern:
+  type: str
+  help: Use these RegEx patterns to match those test instances where failure is permitted
+  when: false
+  default: |
+    {% set patterns = failure_permitted_builtins + failure_permitted_patterns %}
+    {% set patterns = patterns|reject("in", failure_permitted_ignored)|list %}
+    {% set pattern = "({})".format(patterns|join("|")) %}
+    {{ pattern }}{% set _ = None %}
+gha_supported_oses:
+  type: json
+  help: The OSes that we currently support on GitHub Actions. This will expand over time
+  when: false
+  default: |
+    {{ (["Debian", "Ubuntu"] if release_using_gha else [])|to_json }}
+test_instances:
+  type: json
+  help: A list of test instances of the form `debian-12-master` or `fedora-41-3006-7`
+  when: false
+  default: |
+    {% set ns = namespace(instances=[]) %}
+    {% for salt_ver in salt_versions %}
+    {%   for os_name in supported_oses %}
+    {%     for os_ver in os_versions.get(os_name, []) %}
+    {%       set os_shortname = os_shortnames[os_name]|d(os_name|lower|replace(" ","")) %}
+    {%       set instance = "-".join([os_shortname, os_ver|string, salt_ver]) %}
+    {%       set ns.instances = ns.instances + [instance] %}
+    {%     endfor %}
+    {%   endfor %}
+    {% endfor %}
+    {{ ns.instances|to_json }}
+gha_test_instances:
+  type: json
+  help: As above but only those currently supported on GitHub Actions. This will
+          eventually be removed.
+  when: false
+  default: |
+    {% set ns = namespace(instances=[]) %}
+    {% for salt_ver in salt_versions %}
+    {%   for os_name in supported_oses|select("in", gha_supported_oses)|list %}
+    {%     for os_ver in os_versions.get(os_name, []) %}
+    {%       set os_shortname = os_shortnames[os_name]|d(os_name|lower|replace(" ","")) %}
+    {%       set instance = "-".join([os_shortname, os_ver|string, salt_ver]) %}
+    {%       set ns.instances = ns.instances + [instance] %}
+    {%     endfor %}
+    {%   endfor %}
+    {% endfor %}
+    {{ ns.instances|to_json }}
+gha_checks_to_ignore:
+  type: json
+  help: A list of GHA status checks to be ignored by `poseidon/wait-for-status-checks`.
+          i.e. equivalent to GitLab's `.test_instance_failure_permitted`.
+          Takes the form `Test / Kitchen (debian-12-master)`.
+  when: false
+  default: |
+    {% set ns = namespace(checks_to_ignore=["Release / Collect results"]) %}
+    {% for instance in gha_test_instances if instance|regex_search(failure_permitted_pattern) %}
+    {%   set ns.checks_to_ignore = ns.checks_to_ignore + ["Test / Kitchen ({})".format(instance)] %}
+    {% endfor %}
+    {{ ns.checks_to_ignore|to_json }}
