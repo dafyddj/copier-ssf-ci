@@ -25,7 +25,7 @@ jobs:
     name: Lint / `pre-commit`
     needs: should-run
     if: fromJSON(needs.should-run.outputs.should-run)
-    container: techneg/ci-pre-commit:v2.4.27@sha256:5d2646b0be8827f1a0880264aa3c49a1fc1e0fe68cdb9cc0f10cca99a808a764
+    container: techneg/ci-pre-commit:v2.4.28@sha256:3a5b362f2fdf60e3a6c614a919c67cc8ae5d34208e287d293fc30c150a919ac6
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -69,10 +69,10 @@ jobs:
         platform:
           - debian-12-master
           - debian-11-master
-          - debian-12-3007-4
-          - debian-11-3007-4
-          - debian-12-3006-12
-          - debian-11-3006-12
+          - debian-12-3007-5
+          - debian-11-3007-5
+          - debian-12-3006-13
+          - debian-11-3006-13
     steps:
       - name: Debug on runner (When re-run with "Enable debug logging" checked)
         if: runner.debug
@@ -100,7 +100,7 @@ jobs:
             Release / Collect results,
             Test / Kitchen (debian-12-master),
             Test / Kitchen (debian-11-master),
-            Test / Kitchen (debian-11-3007-4)
+            Test / Kitchen (debian-11-3007-5)
           ignore_pattern: ^GitLab CI
           token: ${{ secrets.GITHUB_TOKEN }}
       - run: echo "::notice ::Workflow success!"
