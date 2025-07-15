@@ -30,7 +30,7 @@ os_versions:
 salt_versions:
   type: json
   when: false
-  default: ['master', '3007-5', '3006-13']
+  default: ['master', '3007-6', '3006-14']
 
 # Questions
 formula_name:
