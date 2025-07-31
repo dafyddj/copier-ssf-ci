@@ -228,13 +228,10 @@ test-formula-conversion: {extends: '.test_conversion'}
 # `release` stage: `semantic-release`
 ###############################################################################
 semantic-release:
-  only: *only_branch_master_parent_repo
   stage: *stage_release
   image: *image_semanticrelease
   variables:
     MAINTAINER_TOKEN: '${GH_TOKEN}'
   script:
-    # Update `AUTHORS.md`
-    - '${HOME}/go/bin/maintainer contributor'
     # Run `semantic-release`
     - 'semantic-release'

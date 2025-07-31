@@ -87,10 +87,17 @@ jobs:
   results:
     name: Release / Collect results
     permissions:
+      contents: write
+      issues: write
+      pull-requests: write
       checks: read
+    container: techneg/ci-semantic-release:v1.1.0
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - run: |  # Needed due to bug actions/checkout#2031
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       # yamllint disable-line rule:line-length
       - uses: poseidon/wait-for-status-checks@899c768d191b56eef585c18f8558da19e1f3e707 # v0.6.0
         with:
@@ -100,4 +107,10 @@ jobs:
 {% endfor %}
           ignore_pattern: ^GitLab CI
           token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw +%}
+      - name: Run `semantic-release`
+        env:
+          GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw +%}
+          MAINTAINER_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw +%}
+        run: |
+          semantic-release --dry-run
       - run: echo "::notice ::Workflow success!"
