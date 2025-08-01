@@ -17,3 +17,4 @@ FailurePermittedDebianOnly12Master
 FailurePermittedDebianOnlyAllMaster
 FailurePermittedDebianRockySimplePattern
 FailurePermittedDebianRockyVerbosePattern
+ReleaseStyle

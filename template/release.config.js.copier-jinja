@@ -7,6 +7,7 @@ module.exports = {
       releaseRules: './release-rules.js'
     }],
     '@semantic-release/release-notes-generator',
+{% if release_style in ["standard", "advanced"] %}
     ['@semantic-release/changelog', {
       changelogFile: 'CHANGELOG.md',
       changelogTitle: '# Changelog'
@@ -18,6 +19,7 @@ module.exports = {
     ['@semantic-release/git', {
       assets: ['*.md', 'docs/*.rst', 'FORMULA']
     }],
+{% endif %}
     '@semantic-release/github'
   ],
   generateNotes: {

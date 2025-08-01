@@ -152,6 +152,15 @@ release_using_gha:
   help: Do you want to process a release using GitHub Actions?
   when: '{{ gha_test_instances }}'
   default:  false
+release_style:
+  type: str
+  help: What style of release would you like?
+  when: '{{ release_using_gha }}'
+  choices:
+    - basic
+    - standard
+    - advanced
+  default: standard
 gha_checks_to_ignore:
   type: json
   help: A list of GHA status checks to be ignored by `poseidon/wait-for-status-checks`.
