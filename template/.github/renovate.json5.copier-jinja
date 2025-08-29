@@ -1,5 +1,4 @@
 {
-<<<<<<< before updating
 $schema: 'https://docs.renovatebot.com/renovate-schema.json',
 {% if renovate_extend_presets %}
 extends: {{ renovate_extend_presets | to_nice_json(indent=2) }},
@@ -11,11 +10,4 @@ ignorePresets: {{ renovate_ignore_presets | to_nice_json(indent=2) }},
  * This file is managed as part of a Copier template.     *
  * Please make your own changes below this comment.       *
  *********************************************************/
-=======
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-  extends: [
-    'github>techneg-it/.github',
-    'github>techneg-it/.github:copier',
-  ],
->>>>>>> after updating
 }
