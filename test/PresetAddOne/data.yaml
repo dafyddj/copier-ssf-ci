@@ -1,5 +1,4 @@
 ---
-release_using_gha: true
 renovate_extend_presets:
   - github>saltstack-formulas/.github
   - github>saltstack-formulas/.github:copier

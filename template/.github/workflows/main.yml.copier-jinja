@@ -111,5 +111,5 @@ jobs:
           GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw +%}
           MAINTAINER_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw +%}
         run: |
-          semantic-release --dry-run
+          semantic-release{{ "" if release_using_gha else " --dry-run" }}
       - run: echo "::notice ::Workflow success!"

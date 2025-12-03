@@ -54,37 +54,6 @@ jobs:
         run: |
           pre-commit run --all-files --color always --verbose
           pre-commit run --color always --hook-stage manual --verbose commitlint-ci
-  test:
-    name: Test / Kitchen
-    needs:
-      - pre-commit
-      - should-run
-    if: fromJSON(needs.should-run.outputs.should-run)
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        platform:
-          - debian-12-master
-          - debian-11-master
-          - debian-12-3007
-          - debian-11-3007
-          - debian-12-3006
-          - debian-11-3006
-    steps:
-      - name: Debug on runner (When re-run with "Enable debug logging" checked)
-        if: runner.debug
-        uses: mxschmitt/action-tmate@c0afd6f790e3a5564914980036ebf83216678101 # v3.23
-        with:
-          detached: true
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
-      - uses: ruby/setup-ruby@8aeb6ff8030dd539317f8e1769a044873b56ea71 # v1.268.0
-        with:
-          bundler-cache: true
-          ruby-version: '3.1'
-      - run: |
-          bin/kitchen verify ${{ matrix.platform }}
   results:
     name: Release / Collect results
     permissions:
@@ -103,9 +72,7 @@ jobs:
       - uses: poseidon/wait-for-status-checks@899c768d191b56eef585c18f8558da19e1f3e707 # v0.6.0
         with:
           ignore: >
-            Release / Collect results,
-            Test / Kitchen (debian-12-master),
-            Test / Kitchen (debian-11-master)
+            Release / Collect results
           ignore_pattern: ^GitLab CI
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run `semantic-release`

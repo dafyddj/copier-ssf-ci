@@ -1,5 +1,4 @@
 GenerateProject
-ReleaseNotOnGHA
 ProvideFormulaName
 ProvideEmptyFormulaName
 BannerWithFormulaName
@@ -14,4 +13,4 @@ FailurePermittedDebianOnlyAllMaster
 FailurePermittedDebianRockySimplePattern
 FailurePermittedDebianRockyVerbosePattern
 Testing
-ReleaseStyle
+Releasing
