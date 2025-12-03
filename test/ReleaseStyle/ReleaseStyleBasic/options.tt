@@ -1,1 +1,1 @@
--d formula_name=example -d release_style=basic
+-d formula_name=example -d release_using_gha=true -d release_style=basic

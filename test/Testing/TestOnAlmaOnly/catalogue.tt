@@ -1,0 +1,21 @@
+The following new files/directories were created:
+<Test Directory>
+----.copier-answers.ssf-ci.yml
+----.github
+--------renovate.json5
+--------settings.yml
+--------workflows
+------------main.yml
+----.gitignore
+----.gitlab-ci.yml
+----.pre-commit-config.yaml
+----.rstcheck.cfg
+----.rubocop.yml
+----.salt-lint
+----.yamllint
+----Gemfile
+----Gemfile.lock
+----commitlint.config.js
+----kitchen.yml
+----pre-commit_semantic-release.sh
+----release.config.js
