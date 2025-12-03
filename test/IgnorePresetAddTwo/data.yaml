@@ -1,5 +1,4 @@
 ---
-release_using_gha: true
 renovate_ignore_presets:
   - schedule:monthly
   - :ignoreModulesAndTests
