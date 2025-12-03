@@ -27,14 +27,9 @@ const releaseRules = [
 ]
 
 const config = {
-{% if not release_using_gha %}
-  // TODO: remove this when we no longer process releases on GitLab CI
-  repositoryUrl: 'https://github.com/saltstack-formulas/{{ formula_name|lower }}-formula',
-{% endif %}
   plugins: [
     ['@semantic-release/commit-analyzer', { releaseRules }],
     '@semantic-release/release-notes-generator',
-{% if release_style in ["standard", "advanced"] %}
     ['@semantic-release/changelog', {
       changelogFile: 'CHANGELOG.md',
       changelogTitle: '# Changelog'
@@ -46,7 +41,6 @@ const config = {
     ['@semantic-release/git', {
       assets: ['*.md', 'docs/*.rst', 'FORMULA']
     }],
-{% endif %}
     '@semantic-release/github'
   ],
   preset: 'conventionalcommits',

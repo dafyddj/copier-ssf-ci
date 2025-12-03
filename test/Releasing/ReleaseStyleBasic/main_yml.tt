@@ -6,9 +6,9 @@ name: Test & release
   - push
 
 concurrency:
-  group: {% raw %}${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.ref != format('refs/heads/{0}',
-                          github.event.repository.default_branch) }}{% endraw +%}
+                          github.event.repository.default_branch) }}
 
 jobs:
   should-run:
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
-      should-run: {% raw %}${{ steps.action.outputs.should-run }}{% endraw +%}
+      should-run: ${{ steps.action.outputs.should-run }}
     steps:
       - id: action
         # yamllint disable-line rule:line-length
@@ -41,10 +41,10 @@ jobs:
       - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ~/.cache/pre-commit
-          key: {% raw %}"${{ env.CI_CACHE_ID }}|\
+          key: "${{ env.CI_CACHE_ID }}|\
                 ${{ hashFiles('.pre-commit-config.yaml') }}"
           restore-keys: |
-            ${{ env.CI_CACHE_ID }}|{% endraw +%}
+            ${{ env.CI_CACHE_ID }}|
       - name: Build cache
         run: |
           pre-commit gc
@@ -54,7 +54,6 @@ jobs:
         run: |
           pre-commit run --all-files --color always --verbose
           pre-commit run --color always --hook-stage manual --verbose commitlint-ci
-{% if test_using_gha and gha_test_instances %}
   test:
     name: Test / Kitchen
     needs:
@@ -67,8 +66,21 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-{{ gha_test_instances|map("regex_replace", "^", "- ")|map("indent", 10, true)|join("\n")
-     if gha_test_instances else "[]"|indent(10, true) }}
+          - debian-12-master
+          - debian-11-master
+          - ubuntu-2404-master
+          - ubuntu-2204-master
+          - ubuntu-2004-master
+          - debian-12-3007
+          - debian-11-3007
+          - ubuntu-2404-3007
+          - ubuntu-2204-3007
+          - ubuntu-2004-3007
+          - debian-12-3006
+          - debian-11-3006
+          - ubuntu-2404-3006
+          - ubuntu-2204-3006
+          - ubuntu-2004-3006
     steps:
       - name: Debug on runner (When re-run with "Enable debug logging" checked)
         if: runner.debug
@@ -81,8 +93,7 @@ jobs:
           bundler-cache: true
           ruby-version: '3.1'
       - run: |
-          bin/kitchen verify {% raw %}${{ matrix.platform }}{% endraw +%}
-{% endif %}
+          bin/kitchen verify ${{ matrix.platform }}
   results:
     name: Release / Collect results
     permissions:
@@ -101,15 +112,18 @@ jobs:
       - uses: poseidon/wait-for-status-checks@899c768d191b56eef585c18f8558da19e1f3e707 # v0.6.0
         with:
           ignore: >
-{% for check_to_ignore in gha_checks_to_ignore %}
-{{ check_to_ignore|indent(12, True) }}{% if not loop.last %},{% endif +%}
-{% endfor %}
+            Release / Collect results,
+            Test / Kitchen (debian-12-master),
+            Test / Kitchen (debian-11-master),
+            Test / Kitchen (ubuntu-2404-master),
+            Test / Kitchen (ubuntu-2204-master),
+            Test / Kitchen (ubuntu-2004-master)
           ignore_pattern: ^GitLab CI
-          token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw +%}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run `semantic-release`
         env:
-          GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw +%}
-          MAINTAINER_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw +%}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAINTAINER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          semantic-release{{ "" if release_using_gha else " --dry-run" }}
+          semantic-release
       - run: echo "::notice ::Workflow success!"
