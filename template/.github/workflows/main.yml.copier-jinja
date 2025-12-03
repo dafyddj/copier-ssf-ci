@@ -54,7 +54,7 @@ jobs:
         run: |
           pre-commit run --all-files --color always --verbose
           pre-commit run --color always --hook-stage manual --verbose commitlint-ci
-{% if release_using_gha %}
+{% if test_using_gha and gha_test_instances %}
   test:
     name: Test / Kitchen
     needs:

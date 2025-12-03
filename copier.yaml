@@ -152,6 +152,11 @@ release_using_gha:
   help: Do you want to process a release using GitHub Actions?
   when: '{{ gha_test_instances }}'
   default:  false
+test_using_gha:
+  type: bool
+  help: Do you want to run integration tests using GitHub Actions?
+  when: '{{ not release_using_gha }}'
+  default: '{{ release_using_gha }}'
 release_style:
   type: str
   help: What style of release would you like?
@@ -169,7 +174,7 @@ gha_checks_to_ignore:
   when: false
   default: |
     {% set ns = namespace(checks_to_ignore=["Release / Collect results"]) %}
-    {% set gha_test_instances = gha_test_instances if release_using_gha else [] %}
+    {% set gha_test_instances = gha_test_instances if test_using_gha else [] %}
     {% for instance in gha_test_instances if instance|regex_search(failure_permitted_pattern) %}
     {%   set ns.checks_to_ignore = ns.checks_to_ignore + ["Test / Kitchen ({})".format(instance)] %}
     {% endfor %}

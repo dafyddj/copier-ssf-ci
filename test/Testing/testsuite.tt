@@ -1,0 +1,8 @@
+DefaultNoTestNoReleaseOnGHA
+ForceNoTestNoReleaseOnGHA
+TestButNoReleaseOnGHA
+ReleaseOnGHAForcesTesting
+TestOnDebianOnly
+TestOnRockyOnly
+TestOnAlmaOnly
+TestEmptyOSes

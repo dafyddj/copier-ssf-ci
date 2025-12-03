@@ -9,12 +9,9 @@ PresetEmpty
 IgnorePresetDefaultEmpty
 IgnorePresetAddOne
 IgnorePresetAddTwo
-TestOnDebianOnly
-TestOnRockyOnly
-TestOnAlmaOnly
-TestEmptyOSes
 FailurePermittedDebianOnly12Master
 FailurePermittedDebianOnlyAllMaster
 FailurePermittedDebianRockySimplePattern
 FailurePermittedDebianRockyVerbosePattern
+Testing
 ReleaseStyle
