@@ -135,8 +135,8 @@ rubocop:
     policy: 'pull'
   before_script: *bundle_install
   script:
-    # Alternative value to consider: `${CI_JOB_NAME}`
-    - 'bin/kitchen verify "${DOCKER_ENV_CI_JOB_NAME}"'
+    - 'echo "Starting test job: ${CI_JOB_NAME}"'
+    - 'bin/kitchen verify "${CI_JOB_NAME}"'
 
 ###############################################################################
 # Define `test` template (`allow_failure: true`)
