@@ -149,12 +149,12 @@ gha_test_instances:
 # Dynamic questions/values
 release_using_gha:
   type: bool
-  help: Do you want to process a release using GitHub Actions?
+  help: Do you want to process a release using GitHub Actions? (Under development)
   when: '{{ gha_test_instances }}'
   default:  false
 test_using_gha:
   type: bool
-  help: Do you want to run integration tests using GitHub Actions?
+  help: Do you want to run integration tests using GitHub Actions? (Under development)
   when: '{{ not release_using_gha }}'
   default: '{{ release_using_gha }}'
 release_style:
