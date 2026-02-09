@@ -84,11 +84,11 @@ failure_permitted_ignored:
   default: []
 renovate_extend_presets:
   type: json
-  help: Enter a list of Renovate presets you would like your configuration to extend from
+  help: Enter a list of Renovate presets you would like your configuration to extend from.
   default: ["github>saltstack-formulas/.github", "github>saltstack-formulas/.github:copier"]
 renovate_ignore_presets:
   type: json
-  help: Enter a list of Renovate presets you would like your configuration to ignore
+  help: Enter a list of Renovate presets you would like your configuration to ignore.
   default: []
 
 # Computed values
@@ -149,12 +149,12 @@ gha_test_instances:
 # Dynamic questions/values
 release_using_gha:
   type: bool
-  help: Do you want to process a release using GitHub Actions?
+  help: Do you want to process a release using GitHub Actions? (Under development)
   when: '{{ gha_test_instances }}'
   default:  false
 test_using_gha:
   type: bool
-  help: Do you want to run integration tests using GitHub Actions?
+  help: Do you want to run integration tests using GitHub Actions? (Under development)
   when: '{{ not release_using_gha }}'
   default: '{{ release_using_gha }}'
 release_style:
