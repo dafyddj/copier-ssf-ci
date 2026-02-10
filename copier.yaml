@@ -90,6 +90,13 @@ renovate_ignore_presets:
   type: json
   help: Enter a list of Renovate presets you would like your configuration to ignore.
   default: []
+using_probot_settings:
+  type: bool
+  help: |
+    Are you using the Probot Repository Settings app?
+      (No, if your formula is within the SaltStack Formulas organization)
+  default: false
+
 
 # Computed values
 project_is_TEMPLATE:

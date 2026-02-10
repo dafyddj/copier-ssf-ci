@@ -3,7 +3,6 @@ The following new files/directories were created:
 ----.copier-answers.ssf-ci.yml
 ----.github
 --------renovate.json5
---------settings.yml
 --------workflows
 ------------main.yml
 ----.gitignore

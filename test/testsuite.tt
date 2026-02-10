@@ -14,3 +14,4 @@ FailurePermittedDebianRockySimplePattern
 FailurePermittedDebianRockyVerbosePattern
 Testing
 Releasing
+RepoSettings
