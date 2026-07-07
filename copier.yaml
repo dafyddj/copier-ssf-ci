@@ -180,7 +180,7 @@ gha_checks_to_ignore:
           Takes the form `Test / Kitchen (debian-12-master)`.
   when: false
   default: |
-    {% set ns = namespace(checks_to_ignore=["Release / Collect results"]) %}
+    {% set ns = namespace(checks_to_ignore=["Dependabot", "Release / Collect results"]) %}
     {% set gha_test_instances = gha_test_instances if test_using_gha else [] %}
     {% for instance in gha_test_instances if instance|regex_search(failure_permitted_pattern) %}
     {%   set ns.checks_to_ignore = ns.checks_to_ignore + ["Test / Kitchen ({})".format(instance)] %}
