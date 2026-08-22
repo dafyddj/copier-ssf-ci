@@ -18,3 +18,7 @@ The following new files/directories were created:
 ----kitchen.yml
 ----pre-commit_semantic-release.sh
 ----release.config.js
+----test
+--------salt
+------------pillar
+----------------.gitkeep
