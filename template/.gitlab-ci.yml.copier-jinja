@@ -166,7 +166,7 @@ pre-commit:
     - 'git show --pretty="" --name-status'
     - !reference [.node_anchors, bundle_install]
   script:
-    - 'bin/kitchen verify default-debian-11-master'
+    - 'bin/kitchen verify default-debian-12-master'
 # REMOVEME>
 {% endif %}
 
