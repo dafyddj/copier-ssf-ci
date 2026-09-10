@@ -21,16 +21,16 @@ os_versions:
     AlmaLinux OS: [9, 8]
     Amazon Linux: [2023, 2]
     CentOS: ['stream9']
-    Debian: [12, 11]
-    Fedora Linux: [41, 40]
-    openSUSE:  ['leap-156', 'tmbl-latest']
+    Debian: [13, 12]
+    Fedora Linux: [44, 43]
+    openSUSE:  ['leap-160', 'tmbl-latest']
     Oracle Linux: [9, 8]
     Rocky Linux: [9, 8]
-    Ubuntu: [2404, 2204, 2004]
+    Ubuntu: [2604, 2404, 2204]
 salt_versions:
   type: json
   when: false
-  default: ['master', '3008', '3007', '3006']
+  default: ['master', '3008', '3006']
 
 # Questions
 formula_name:
