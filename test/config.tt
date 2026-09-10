@@ -26,6 +26,7 @@ renovate_json5:.github/renovate.json5
 rstcheck_cfg:.rstcheck.cfg
 rubocop_yml:.rubocop.yml
 salt-lint:.salt-lint
+system_rb:test/integration/share/libraries/system.rb
 yamllint:.yamllint
 
 [run_dependent_text]
