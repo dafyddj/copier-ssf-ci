@@ -102,7 +102,7 @@ jobs:
         with:
           ignore: >
 {% for check_to_ignore in gha_checks_to_ignore %}
-{{ check_to_ignore|indent(12, True) }}{% if not loop.last %},{% endif +%}
+{{ check_to_ignore|indent(12, True) }},
 {% endfor %}
           ignore_pattern: ^GitLab CI
           token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw +%}
