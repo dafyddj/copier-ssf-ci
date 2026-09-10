@@ -76,7 +76,7 @@ build-cache:
   script: *bundle_install
 
 ###############################################################################
-# `lint` stage: `commitlint`, `pre-commit` & `rubocop` (latest, failure allowed)
+# `lint` stage: `commitlint`, `pre-commit`
 ###############################################################################
 .lint_job:
   stage: *stage_lint
@@ -111,19 +111,6 @@ pre-commit:
   script:
     - 'pre-commit run --all-files --color always --verbose'
     - 'pre-commit run --color always --hook-stage manual commitlint-ci'
-
-# Use a separate job for `rubocop` other than the one potentially run by `pre-commit`
-# - The `pre-commit` check will only be available for formulas that pass the default
-#   `rubocop` check -- and must continue to do so
-# - This job is allowed to fail, so can be used for all formulas
-# - Furthermore, this job uses all of the latest `rubocop` features & cops,
-#   which will help when upgrading the `rubocop` linter used in `pre-commit`
-rubocop:
-  extends: '.lint_job'
-  allow_failure: true
-  image: *image_rubocop
-  script:
-    - 'rubocop -d -P -S --enable-pending-cops'
 
 ###############################################################################
 # Define `test` template
