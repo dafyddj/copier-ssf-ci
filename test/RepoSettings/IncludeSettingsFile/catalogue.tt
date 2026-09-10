@@ -20,6 +20,10 @@ The following new files/directories were created:
 ----pre-commit_semantic-release.sh
 ----release.config.js
 ----test
+--------integration
+------------share
+----------------libraries
+--------------------system.rb
 --------salt
 ------------pillar
 ----------------.gitkeep
