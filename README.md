@@ -1,0 +1,41 @@
+# copier-ssf-ci
+
+This is a [copier](https://github.com/copier-org/copier) template for generating particular types of projects or parts of projects.
+
+## Quickstart
+
+Assuming the requirements are installed here is a quick example of how this template could be used.
+
+```
+gh repo create my-project --public --license apache-2.0 --clone
+cd my-project
+git switch -c chore/copier
+copier copy https://github.com/dafyddj/copier-bootstrap .
+pre-commit install
+git add .
+git commit -m "chore: initial bootstrapped template"
+gh pr create            # Accept all defaults
+gh pr checks --watch    # Observe tests passing
+gh pr --merge -dm
+```
+
+## Requirements
+
+Install dependencies using `pip`, [pipx](https://pipx.pypa.io/stable/) or [Homebrew/Linuxbrew](https://brew.sh/).
+
+For example:
+
+```
+pip install --user pipx
+pipx ensurepath
+
+pipx install copier pre-commit
+```
+
+or
+
+```
+brew install copier pre-commit
+```
+
+This is optional but the official **GitHub** [CLI](https://cli.github.com/) tool (`gh`) can ease working with GitHub using the command line.
